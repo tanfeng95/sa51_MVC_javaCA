@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="ISO-8859-1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link th:href="@{/css/styling.css}" rel="stylesheet">
+	<script type = "text/javascript" th:src="@{/js/layout.js}"></script>
+    
+<title>Insert title here</title>
+</head>
+<body>
+<header th:insert="layout/layout.html :: header"></header>
+<div th:replace="layout/layout.html :: menu" ></div>
+<br/>
+    <h3>Part Listing</h3>
+    <form th:action="@{/stock/part-list/} + ${id}" class="search">
+        Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required /> &nbsp;
+            <input type="submit" value="Search" /> &nbsp; 
+            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    </form>
+    <form th:action="@{/stock/update-stock}" th:object="${productMapFormWrapper}" method="post">
+	    <table>
+	        <tr>
+	            <th>Name</th>
+	            <th>Description</th>
+	            <th>Color</th>
+	            <th>Unit</th>
+	            <th>Part Number</th>
+	            <th>Quantity</th>
+	        </tr>
+	        <tr th:each="product, stat:${productMapFormWrapper.ProductMapFormL}">
+	            <td th:text="${product.getName()}">ID</td>
+	            <td th:text="${product.getDescription()}">ID</td>
+	            <td th:text="${product.getColor()}">ID</td>
+	            <td th:text="${product.getUnit()}">ID</td>
+	            <td th:text="${product.getPartNumber()}">ID</td>
+	            
+	            <td><input type="text" th:field = "*{ProductMapFormL[__${stat.index}__].quantityUsed}"></td>
+	            <td> <input type="hidden" th:field="*{ProductMapFormL[__${stat.index}__].id}" th:value ="${product.getId()}"></td>
+	        </tr>
+	    </table>
+        <br/>
+ 		<input type="hidden" name="usageRecordId" th:value="${usagerecordid}">
+         <fieldset>
+            <button type="submit" value="Save">Save</button>
+        </fieldset>
+    </form>
+     <br>
+    <input type="button" value="Return To Usage List"
+					onclick="window.location.href='/usage/list'; return false"
+					class="button" />
+    <div th:replace="layout/layout.html :: footer"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/stock/part-list/}+ ${id}]]";
+    }
+</script>
+</body>
+</html>

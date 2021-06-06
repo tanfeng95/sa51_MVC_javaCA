@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Suppliers List</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<h1>Suppliers List</h1>
+	<!-- Add Hyperlink -->
+	<a href="AddSupplier.html" th:href="@{/supplier/add}">New Supplier</a>
+
+	<h2 th:if="${not #lists.isEmpty(suppliers)}">Suppliers List</h2>
+	<table th:if="${not #lists.isEmpty(suppliers)}" >
+		<tr >
+			<th>Supplier Id</th>
+			<th>Supplier Name</th>
+			<th>Supplier Address</th>
+			<th>Supplier Phone</th>
+			<th>Supplier Email</th>
+			<th>Edit Supplier</th>
+			<th>Delete Supplier</th>
+		</tr>
+		<tr th:each="supplier:${suppliers}" >
+			<td th:text=${supplier.id}>Id</td>
+			<td th:text="${supplier.supplierName}">Supplier Name</td>
+			<td th:text=${supplier.supplierAddress}>Supplier Address</td>
+			<td th:text=${supplier.phone}>Supplier Phone</td>
+			<td th:text=${supplier.email}>Supplier Email</td>
+			<td><a href="EditSupplier.html"
+				th:href="@{/supplier/edit/}+${supplier.id}">Edit</a></td>
+			<td><a href="Deletesupplier.html"
+				th:href="@{/supplier/delete/}+${supplier.id}">Delete</a></td>
+		</tr>
+	</table>
+	
+</body>
+</html>

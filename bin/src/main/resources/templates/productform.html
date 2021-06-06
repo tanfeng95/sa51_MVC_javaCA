@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" media="all" 
+          th:href="@{/css/style.css}" />
+<title>Product Form</title>
+</head>
+<body>
+<h1>Product Form</h1>
+<form action="" th:object="${product}" th:action="@{/product/save}" method="get">
+        <fieldset>
+		     <input type="hidden" th:field="*{id}">  
+		</fieldset>
+		<fieldset>
+			Bar code: <input type="text" th:field="*{barcode}">			
+		</fieldset>
+		<fieldset>
+			Name: <input type="text" th:field="*{name}">	
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>		
+		</fieldset>
+		<fieldset>
+			Description: <input type="text" th:field="*{description}">			
+		</fieldset>
+		<fieldset>
+			Type: <input type="text" th:field="*{type}">			
+		</fieldset>
+		<fieldset>
+			Color: <input type="text" th:field="*{color}">			
+		</fieldset>
+		<fieldset>
+			Original Price: <input type="text" th:field="*{originalPrice}">			
+		</fieldset>
+		<fieldset>
+			Category: <input type="text" th:field="*{category}">
+		</fieldset>
+		<fieldset>
+			Whole Sale Price: <input type="text" th:field="*{priceFWholesale}">
+		</fieldset>		
+		<fieldset>
+			Retail Price: <input type="text" th:field="*{priceFRetail}">	
+				
+		</fieldset>
+		<fieldset>
+			Price For Partner: <input type="text" th:field="*{PriceFPartner}">
+		</fieldset>
+		<fieldset>
+			Sub Category: <input type="text" th:field="*{subcategory}">
+		</fieldset>
+		<fieldset>
+			Unit: <input type="text" th:field="*{unit}">
+		</fieldset>
+		<fieldset>
+			Part Number: <input type="text" th:field="*{partNumber}">
+		</fieldset>
+		<fieldset>
+			Record Level: <input type="text" th:field="*{reorderLevel}">
+		</fieldset>
+		<fieldset>
+			Minimum Reorder Level: <input type="text" th:field="*{minReoderLevel}">
+		</fieldset>
+		
+		<fieldset> <button type="submit">Save</button> </fieldset>
+		
+</form>
+</body>
+</html>

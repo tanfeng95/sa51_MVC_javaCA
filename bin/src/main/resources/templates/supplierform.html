@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Supplier Form</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<h1>Supplier Form</h1>
+	<form action="#" th:object="${suppliers}" th:action="@{/supplier/save}"
+		method="post">
+		<fieldset>
+			<input type="hidden" th:field="*{id}">
+		</fieldset>
+		<fieldset>
+			Supplier Name <input type="text" th:field="*{supplierName}">
+			<p th:if="${#fields.hasErrors('supplierName')}" th:errors="*{supplierName}"></p>
+		</fieldset>
+		<fieldset>
+			Supplier Address
+			<textarea th:field="*{supplierAddress}" cols="30" rows="10"></textarea>
+			<p th:if="${#fields.hasErrors('supplierAddress')}"
+				th:errors="*{supplierAddress}"></p>
+		</fieldset>
+		<fieldset>
+			Supplier Phone
+			<textarea th:field="*{phone}" cols="30" rows="10"></textarea>
+			<p th:if="${#fields.hasErrors('phone')}"
+				th:errors="*{phone}"></p>
+		</fieldset>
+		<fieldset>
+			Supplier Email
+			<textarea th:field="*{email}" cols="30" rows="10"></textarea>
+			<p th:if="${#fields.hasErrors('email')}"
+				th:errors="*{email}"></p>
+		</fieldset>
+
+		<fieldset>
+			<input type="submit" value="Save"/>
+			&nbsp; &nbsp; 	
+			<input type="reset" value="Reset"/>
+		</fieldset>
+	</form>
+	
+</body>
+</html>

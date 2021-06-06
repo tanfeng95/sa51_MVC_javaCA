@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<link rel = "stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Product Listing</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Barcode</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Color</th>
+			<th>Original Price</th>
+			<th>Category</th>
+			<th>Whole Sale Price</th>
+			<th>Retail Price</th>
+			<th>Price For Partner</th>
+			<th>Sub Category</th>
+			<th>Unit</th>
+			<th>Part Number</th>
+			<th>Reorder Level</th>
+			<th>Min Reorder Level</th>
+			<th>Delete Link</th>
+			<th>Edit Link</th>
+		</tr>
+		<tr th:each="product:${product}">
+			<td th:text="${product.id}">ID</td>
+			<td th:text="${product.barcode}">ID</td>
+			<td th:text="${product.name}">ID</td>
+			<td th:text="${product.description}">ID</td>
+			<td th:text="${product.type}">ID</td>
+			<td th:text="${product.color}">ID</td>
+			<td th:text="${product.originalPrice}">ID</td>
+			<td th:text="${product.category}">ID</td>
+			<td th:text="${product.priceFWholesale}">ID</td>
+			<td th:text="${product.priceFRetail}">ID</td>
+			<td th:text="${product.PriceFPartner}">ID</td>
+			<td th:text="${product.subcategory}">ID</td>
+			<td th:text="${product.unit}">ID</td>
+			<td th:text="${product.partNumber}">ID</td>
+			<td th:text="${product.reorderLevel}">ID</td>
+			<td th:text="${product.minReoderLevel}">ID</td>
+			<td><a href="EditProduct.html" th:href="@{/product/edit/}+${product.id}" th:utext="#{products.page.edit}">Edit</a></td>
+			<td><a href="DeleteProduct.html" th:href="@{/product/delete/}+${product.id}" th:utext="#{products.page.delete}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>

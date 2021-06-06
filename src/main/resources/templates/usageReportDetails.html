@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link th:href="@{/css/styling.css}" rel="stylesheet">
+	<script type = "text/javascript" th:src="@{/js/layout.js}"></script>
+    
+    <title>AddUser</title>
+</head>
+<body>
+  <div th:replace="layout/layout.html :: menu" ></div>
+  <br/>
+  <table>
+    <tr><th colspan="5" class="text-center">Inventory Usage Report</th></tr>
+    <tr>
+      <td class="bold">From: </td>
+      <td th:text="${fromDate}">FromDate</td>
+      <td class="bold">To: </td>
+      <td th:text="${ToDate}">ToDate</td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td class="bold">Product ID: </td>
+      <td th:text="${product.id}">Product ID</td>
+      <td class="bold">Type: </td>
+      <td th:text="${product.type}">Type</td>
+      <td class="bold">Sub-Category</td>
+      <td th:text="${product.subcategory}"> Sub-Category</td>
+    </tr>
+    <tr>
+      <td class="bold">Product Name: </td>
+      <td th:text="${product.name}">Product Name</td>
+      <td class="bold">Category: </td>
+      <td th:text="${product.category}">Category</td>
+      <td class="bold">Original Price: </td>
+      <td th:text="${product.originalPrice}"></td>
+    </tr>
+  </table>
+	<br/><br/>
+	<table th:if="${not #lists.isEmpty(usageList)}">
+		<tr><th colspan="5" class="text-center">Usage History</th></tr>
+		<tr class="text-center">
+			<th>Date</th>
+			<th>Customer Name</th>
+			<th>Car Plate</th>
+			<th>Employee Name</th>
+			<th>Quantity Used</th>
+		</tr>
+		<tr th:each="usage:${usageList}" >
+			<td th:text="${#dates.format(usage.usageRecord.Date,'dd-MM-yyyy')}"> Date</td>
+			<td th:text="${usage.usageRecord.customerName}">Customer Name</td>
+			<td th:text="${usage.usageRecord.carPlate}">Car Plate</td>
+			<td th:text="${usage.usageRecord.userName}">Employee Name</td>
+			<td th:text="${usage.qtyChange}">Quantity Used</td>
+		</tr>
+	</table>
+  <br/><br/>
+  <h3 th:unless="${not #lists.isEmpty(usageList)}">No record found</h3>
+  <br/>
+  <form action="/stock/report">
+    <input type="submit" value="Back" />
+  </form>
+<div th:replace="layout/layout.html :: footer"></div>  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>

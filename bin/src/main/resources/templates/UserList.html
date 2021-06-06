@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type = "text/javascript" th:src="@{/js/userList.js}"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>AddUser</title>
+  </head>
+<body>
+<h1>UserList</h1>
+	<form>
+		<fieldset>
+			RoleType: <select class="roleType">
+						<option value = "ALL">All</option>
+		                <option value = "MECHANIC">Mechanic</option>
+		                <option value = "ADMIN">Admin</option>
+		              </select>
+		</fieldset>
+    	<fieldset>
+			<input type="submit" id='button' value="Retrieve" />
+		</fieldset>
+	</form>
+	<form action="" th:action="@{/user/delete}" method="post">
+		<table id="result">
+		</table>
+	</form>
+    <form action="" th:action= "@{/user/add}">
+    	<input type="submit" value="Add User" />
+	</form>
+	<form action="" th:action= "@{/user/update}">
+    	<input type="submit" value="Update User" />
+	</form>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script type = "text/javascript" th:src="@{/JavaS/userList.js}"></script>
+</body>
+</html>

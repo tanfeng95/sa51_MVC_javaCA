@@ -1,0 +1,76 @@
+  
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="ISO-8859-1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link th:href="@{/css/styling.css}" rel="stylesheet">
+	<script type = "text/javascript" th:src="@{/js/layout.js}"></script>
+    
+<title>Reorder Report</title>
+</head>
+<body>
+<header th:insert="layout/layout.html :: header"></header>
+<div th:replace="layout/layout.html :: menu" ></div>
+<br/>
+	<h3>Inventory Reorder Report</h3>
+	<table>
+		<tr>
+			<th>Product ID</th>
+			<th>Part No.</th>
+			<th>Unit.Price</th>
+			<th>Qty</th>
+			<th>Reorder Qty.</th>
+			<th>Min.Ord.Qty</th>
+			<th>Ord.Qty</th>
+			<th>Price</th>
+		</tr>
+		<tr th:each="product:${products}">
+			<td th:text="${product.id}">ID</td>
+			<td th:text="${product.partNumber}">ID</td>
+			<td th:text="${product.priceFWholesale}">ID</td>
+			<td th:text="${product.unit}">ID</td>
+			<td th:text="${product.reorderLevel}">ID</td>
+			<td th:text="${product.minReoderLevel}">ID</td>
+			<td th:text="${product.reorderLevel-product.unit>0}? 
+				(${product.reorderLevel-product.unit>product.minReoderLevel}? 
+				${product.reorderLevel-product.unit}:${product.minReoderLevel})
+				:'0'">ID</td>
+			<td th:text="${product.reorderLevel-product.unit>0}? 
+				(${product.reorderLevel-product.unit>product.minReoderLevel}?
+				${(product.reorderLevel-product.unit)*product.priceFWholesale}
+				:${product.minReoderLevel*product.priceFWholesale})
+				:'0'">ID</td>
+		</tr>
+		
+		<tr style="border-top:2px solid #6678b1;">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>TOTAL</td>
+			<td th:text="${total}"></td>
+		</tr>
+		<tr style="border-bottom:2px solid #6678b1">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		
+	</table>
+
+	<p><center>End of Report</center></p>
+
+	<div th:replace="layout/layout.html :: footer"></div>
+
+</body>
+</html>

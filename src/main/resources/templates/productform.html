@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link th:href="@{/css/styling.css}" rel="stylesheet">
+	<script type = "text/javascript" th:src="@{/js/layout.js}"></script>
+    
+<title>Product Form</title>
+</head>
+<body>
+
+<header th:insert="layout/layout.html :: header"></header>
+<div th:replace="layout/layout.html :: menu" ></div>
+<br/>
+	<h3>Product Form</h3>
+
+
+	<form action="" th:object="${product}" th:action="@{/product/save}"
+		method="get">	
+		<table class="table">
+			<tr>
+				<td>
+					<input type="hidden" th:field="*{id}">
+				</td>				
+			</tr>
+			
+			<tr>
+				<td>Bar Code:</td>
+				<td><input type="text" th:field="*{barcode}">
+				<p th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}"></p></td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" th:field="*{name}">
+				<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p></td>
+			</tr>
+			<tr>
+				<td>Supplier:</td>
+				<td>
+					<select name="id" id="id" th:field="*{supplier}">
+                    	<option th:each="sup : ${supplier}" th:value="${sup.id}" th:text="${sup.supplierName}"></option>
+                    </select>
+				</td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td><input type="text" th:field="*{description}"></td>
+			</tr>
+			<tr>
+				<td>Type:</td>
+				<td><input type="text" th:field="*{type}"></td>
+			</tr>
+			<tr>
+				<td>Color:</td>
+				<td><input type="text" th:field="*{color}"></td>
+			</tr>
+			<tr>
+				<td>Original Price:</td>
+				<td><input type="text" th:field="*{originalPrice}">
+			<p th:if="${#fields.hasErrors('originalPrice')}" th:errors="*{originalPrice}"></p></td>
+			</tr>
+			<tr>
+				<td>Category:</td>
+				<td><input type="text" th:field="*{category}"></td>
+			</tr>
+			<tr>
+				<td>Whole Sale Price:</td>
+				<td><input type="text" th:field="*{priceFWholesale}">
+			<p th:if="${#fields.hasErrors('priceFWholesale')}" th:errors="*{priceFWholesale}"></p></td>
+			</tr>
+			<tr>
+				<td>Retail Price:</td>
+				<td><input type="text" th:field="*{priceFRetail}">
+			<p th:if="${#fields.hasErrors('priceFRetail')}" th:errors="*{priceFRetail}"></p></td>
+			</tr>
+			<tr>
+				<td>Price For Partner:</td>
+				<td><input type="text" th:field="*{PriceFPartner}">
+			<p th:if="${#fields.hasErrors('PriceFPartner')}" th:errors="*{PriceFPartner}"></p></td>
+			</tr>
+			<tr>
+				<td>Sub Category:</td>
+				<td><input type="text" th:field="*{subcategory}"></td>
+			</tr>
+			<tr>
+				<td>Unit:</td>
+				<td><input type="text" th:field="*{unit}">
+			<p th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"></td>
+			</tr>
+			<tr>
+				<td>Part Number:</td>
+				<td><input type="text" th:field="*{partNumber}">
+			<p th:if="${#fields.hasErrors('partNumber')}" th:errors="*{partNumber}"></p></td>
+			</tr>
+			<tr>
+				<td>Record Level:</td>
+				<td><input type="text" th:field="*{reorderLevel}">
+			<p th:if="${#fields.hasErrors('reorderLevel')}" th:errors="reorderLevel"></p></td>
+			</tr>
+			<tr>
+				<td>Minimum Reorder Level:</td>
+				<td> <input type="text"
+				th:field="*{minReoderLevel}">
+				<p th:if="${#fields.hasErrors('minReoderLevel')}" th:errors="*{minReoderLevel}"></p></td>
+			</tr>
+			<tr>
+				<td  colspan="3"><button type="submit">Save</button></td>
+			</tr>
+			
+		</table>
+
+	</form>
+	<div th:replace="layout/layout.html :: footer"></div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
